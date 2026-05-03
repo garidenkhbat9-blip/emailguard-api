@@ -174,9 +174,9 @@
                     <div class="bg-slate-900 p-4 rounded-xl font-mono flex flex-col sm:flex-row sm:justify-between sm:items-center border border-slate-800 gap-4">
                         <div class="flex items-center gap-3">
                             <span class="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-bold">POST</span>
-                            <span class="text-slate-300">https://api.yourdomain.com/api/validate</span>
+                            <span class="text-slate-300">https://emailguard-api-wctt.onrender.com/api/validate</span>
                         </div>
-                        <button onclick="navigator.clipboard.writeText('http://localhost:3000/api/validate')" class="text-slate-500 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg text-sm flex items-center gap-2">
+                        <button onclick="navigator.clipboard.writeText('https://emailguard-api-wctt.onrender.com/api/validate')" class="text-slate-500 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg text-sm flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             Copy URL
                         </button>
@@ -186,10 +186,10 @@
                 <div class="mb-8">
                     <h3 class="text-lg font-medium text-slate-300 mb-3 uppercase tracking-wider text-sm">cURL Request</h3>
                     <div class="bg-slate-900 p-5 rounded-xl font-mono border border-slate-800 overflow-x-auto text-sm shadow-inner relative group">
-                        <button onclick="navigator.clipboard.writeText('curl -X POST http://localhost:3000/api/validate -H \'Content-Type: application/json\' -d \'{\x22email\x22:\x22team@techcorp.com\x22}\'')" class="absolute top-3 right-3 text-slate-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="navigator.clipboard.writeText('curl -X POST https://emailguard-api-wctt.onrender.com/api/validate -H \'Content-Type: application/json\' -d \'{\x22email\x22:\x22team@techcorp.com\x22}\'')" class="absolute top-3 right-3 text-slate-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                         </button>
-<pre><span class="text-sky-400">curl</span> -X POST http://localhost:3000/api/validate \
+<pre><span class="text-sky-400">curl</span> -X POST https://emailguard-api-wctt.onrender.com/api/validate \
   -H <span class="text-green-400">"Content-Type: application/json"</span> \
   -d <span class="text-green-400">'{"email":"team@techcorp.com"}'</span></pre>
                     </div>
@@ -201,7 +201,7 @@
 <pre><span class="text-purple-400">const</span> <span class="text-sky-300">axios</span> = <span class="text-yellow-200">require</span>(<span class="text-green-400">'axios'</span>);
 
 <span class="text-purple-400">async</span> <span class="text-purple-400">function</span> <span class="text-blue-300">verifyEmail</span>(email) {
-  <span class="text-purple-400">const</span> response = <span class="text-purple-400">await</span> axios.<span class="text-blue-300">post</span>(<span class="text-green-400">'http://localhost:3000/api/validate'</span>, { email });
+  <span class="text-purple-400">const</span> response = <span class="text-purple-400">await</span> axios.<span class="text-blue-300">post</span>(<span class="text-green-400">'https://emailguard-api-wctt.onrender.com/api/validate'</span>, { email });
   
   <span class="text-slate-500">// Block user if Risk Score is high</span>
   <span class="text-purple-400">if</span> (response.data.action === <span class="text-green-400">'Block'</span>) {
@@ -245,7 +245,7 @@
                 // Initial delay just to show the loading state nicely for the demo
                 await new Promise(r => setTimeout(r, 600));
 
-                const response = await fetch('/api/validate', {
+                const response = await fetch('/demo/validate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email })

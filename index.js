@@ -42,6 +42,14 @@ const rapidApiMiddleware = (req, res, next) => {
 
 app.use('/api/', apiLimiter, rapidApiMiddleware);
 
+// Demo Rate Limiting (much stricter — 10 requests per 15 mins)
+const demoLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { error: 'Demo limit reached. Subscribe on RapidAPI for unlimited access.' }
+});
+app.use('/demo/', demoLimiter);
+
 // Serve Static Frontend Landing Page
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -192,9 +200,9 @@ const roleBasedPrefixes = [
 ];
 
 // ─────────────────────────────────────────────────────────────
-// MAIN ENDPOINT: POST /api/validate
+// SHARED VALIDATION HANDLER
 // ─────────────────────────────────────────────────────────────
-app.post('/api/validate', async (req, res) => {
+const validateHandler = async (req, res) => {
   const startTime = Date.now();
   const { email } = req.body;
 
@@ -375,7 +383,13 @@ app.post('/api/validate', async (req, res) => {
     },
     processingTimeMs
   });
-});
+};
+
+// Protected endpoint (RapidAPI customers)
+app.post('/api/validate', validateHandler);
+
+// Public demo endpoint (landing page — strict rate limit, no auth)
+app.post('/demo/validate', validateHandler);
 
 // Root route is automatically handled by express.static serving public/index.html
 
