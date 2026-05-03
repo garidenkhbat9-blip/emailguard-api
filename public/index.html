@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailGuard API - Advanced Email Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+        .gradient-text { background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Custom scrollbar for JSON output */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden selection:bg-sky-500/30">
+    <!-- Ambient Background Effects -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-600/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-50 pointer-events-none"></div>
+    <div class="fixed top-[20%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-50 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        
+        <!-- Navigation -->
+        <header class="flex justify-between items-center mb-16 lg:mb-24">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-sky-500/20">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">EmailGuard</h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#demo" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Interactive Demo</a>
+                <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Features</a>
+                <a href="#docs" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">API Reference</a>
+            </nav>
+            <div class="hidden md:block">
+                <a href="#docs" class="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all backdrop-blur-md">Get API Key</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center mb-32">
+            <div class="lg:col-span-5">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-sm font-medium mb-6 border border-sky-500/20">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                    API v1.0 is now live
+                </div>
+                <h2 class="text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6">
+                    Stop bad users <br>before they <span class="gradient-text">sign up.</span>
+                </h2>
+                <p class="text-lg text-slate-400 mb-8 leading-relaxed">
+                    Protect your database from disposable emails, spam traps, and fake accounts. 
+                    EmailGuard analyzes over <strong class="text-white">15+ data points</strong> to give you a definitive risk score in milliseconds.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#demo" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-400 hover:to-indigo-400 text-white font-semibold transition-all shadow-lg shadow-sky-500/25 flex items-center gap-2">
+                        Try Live Demo
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-2 gap-4">
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="w-10 h-10 rounded-lg bg-sky-500/20 flex items-center justify-center text-sky-400 mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white mb-1">Ultra Fast</h3>
+                        <p class="text-sm text-slate-400">Sub-100ms response time for seamless user flows.</p>
+                    </div>
+                    <div class="glass p-5 rounded-2xl">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="font-semibold text-white mb-1">High Accuracy</h3>
+                        <p class="text-sm text-slate-400">DNS validation + dynamic disposable lists.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Terminal -->
+            <div id="demo" class="lg:col-span-7 lg:pl-12">
+                <div class="glass rounded-2xl overflow-hidden shadow-2xl relative">
+                    <!-- Browser Chrome -->
+                    <div class="bg-slate-800/80 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                        </div>
+                        <div class="mx-auto bg-slate-900 rounded-md px-3 py-1 text-xs text-slate-400 font-mono flex items-center gap-2">
+                            <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            api.emailguard.com/v1/validate
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <form id="apiForm" class="flex gap-3 mb-6">
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+                                </div>
+                                <input type="email" id="emailInput" value="ceo@microsoft.com" required 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors font-mono text-sm">
+                            </div>
+                            <button type="submit" id="submitBtn" class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 shadow-lg shadow-indigo-500/20 active:scale-95">
+                                <span>Check</span>
+                                <svg id="spinner" class="animate-spin h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="bg-[#0d1117] rounded-xl p-5 font-mono text-sm h-[380px] overflow-auto border border-slate-800/50 shadow-inner" id="jsonResult">
+                            <div class="text-slate-500 animate-pulse">// Press "Check" to see the API response...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2 mt-4 justify-center">
+                    <button type="button" class="sample-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition-colors" data-email="temp123@mailinator.com">Disposable Email</button>
+                    <button type="button" class="sample-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition-colors" data-email="info@amazon.com">Role-based</button>
+                    <button type="button" class="sample-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition-colors" data-email="your.name@gmail.com">Personal Email</button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Features Section -->
+        <section id="features" class="py-20 border-t border-slate-800/50">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Enterprise-grade Validation</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">We do more than just regex matching. Our API performs deep DNS analysis and cross-references against constantly updating blacklists.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass p-8 rounded-2xl hover:border-sky-500/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-sky-400 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Disposable Detection</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Instantly block temporary emails from services like Mailinator, 10MinuteMail, and 50,000+ other disposable domains. List is updated hourly.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass p-8 rounded-2xl hover:border-indigo-500/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Deep DNS Checks</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">We verify MX (Mail Exchange) and SPF (Sender Policy Framework) records in real-time to ensure the domain actually exists and is configured to receive emails.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass p-8 rounded-2xl hover:border-emerald-500/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Role-based Filtering</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Identify non-personal addresses like admin@, info@, or billing@ that artificially inflate your active user count and ruin your email delivery rates.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Documentation Section -->
+        <section id="docs" class="py-20 border-t border-slate-800/50">
+            <h2 class="text-3xl font-bold mb-10 text-center">Developer API Reference</h2>
+            <div class="glass rounded-2xl p-6 lg:p-10 max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium text-slate-300 mb-3 uppercase tracking-wider text-sm">Endpoint</h3>
+                    <div class="bg-slate-900 p-4 rounded-xl font-mono flex flex-col sm:flex-row sm:justify-between sm:items-center border border-slate-800 gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-bold">POST</span>
+                            <span class="text-slate-300">https://api.yourdomain.com/api/validate</span>
+                        </div>
+                        <button onclick="navigator.clipboard.writeText('http://localhost:3000/api/validate')" class="text-slate-500 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg text-sm flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            Copy URL
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium text-slate-300 mb-3 uppercase tracking-wider text-sm">cURL Request</h3>
+                    <div class="bg-slate-900 p-5 rounded-xl font-mono border border-slate-800 overflow-x-auto text-sm shadow-inner relative group">
+                        <button onclick="navigator.clipboard.writeText('curl -X POST http://localhost:3000/api/validate -H \'Content-Type: application/json\' -d \'{\x22email\x22:\x22team@techcorp.com\x22}\'')" class="absolute top-3 right-3 text-slate-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </button>
+<pre><span class="text-sky-400">curl</span> -X POST http://localhost:3000/api/validate \
+  -H <span class="text-green-400">"Content-Type: application/json"</span> \
+  -d <span class="text-green-400">'{"email":"team@techcorp.com"}'</span></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-medium text-slate-300 mb-3 uppercase tracking-wider text-sm">Node.js / Axios</h3>
+                    <div class="bg-slate-900 p-5 rounded-xl font-mono border border-slate-800 overflow-x-auto text-sm shadow-inner relative group">
+<pre><span class="text-purple-400">const</span> <span class="text-sky-300">axios</span> = <span class="text-yellow-200">require</span>(<span class="text-green-400">'axios'</span>);
+
+<span class="text-purple-400">async</span> <span class="text-purple-400">function</span> <span class="text-blue-300">verifyEmail</span>(email) {
+  <span class="text-purple-400">const</span> response = <span class="text-purple-400">await</span> axios.<span class="text-blue-300">post</span>(<span class="text-green-400">'http://localhost:3000/api/validate'</span>, { email });
+  
+  <span class="text-slate-500">// Block user if Risk Score is high</span>
+  <span class="text-purple-400">if</span> (response.data.action === <span class="text-green-400">'Block'</span>) {
+    <span class="text-purple-400">throw</span> <span class="text-purple-400">new</span> <span class="text-yellow-200">Error</span>(<span class="text-green-400">'High risk email detected.'</span>);
+  }
+  <span class="text-purple-400">return</span> response.data;
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="mt-20 py-8 border-t border-slate-800/50 text-center text-slate-500 text-sm">
+            <p>© 2026 EmailGuard API. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Sample buttons functionality
+        document.querySelectorAll('.sample-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.getElementById('emailInput').value = e.target.dataset.email;
+                document.getElementById('apiForm').dispatchEvent(new Event('submit'));
+            });
+        });
+
+        // Form submission
+        document.getElementById('apiForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const btn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('spinner');
+            const resultBox = document.getElementById('jsonResult');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            spinner.classList.remove('hidden');
+            resultBox.innerHTML = '<div class="text-slate-400 animate-pulse font-mono flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-sky-500" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Analyzing domain reputation...</div>';
+
+            try {
+                // Initial delay just to show the loading state nicely for the demo
+                await new Promise(r => setTimeout(r, 600));
+
+                const response = await fetch('/api/validate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                
+                // Pretty print JSON with syntax highlighting
+                const formattedJson = JSON.stringify(data, null, 2);
+                const highlighted = formattedJson
+                    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                    .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                        let cls = 'text-blue-400';
+                        if (/^"/.test(match)) {
+                            if (/:$/.test(match)) {
+                                cls = 'text-sky-300'; // key
+                            } else {
+                                cls = 'text-emerald-400'; // string
+                            }
+                        } else if (/true|false/.test(match)) {
+                            cls = 'text-amber-400'; // boolean
+                        } else if (/null/.test(match)) {
+                            cls = 'text-slate-400'; // null
+                        } else {
+                            cls = 'text-purple-400'; // number
+                        }
+                        return '<span class="' + cls + '">' + match + '</span>';
+                    });
+                
+                resultBox.innerHTML = `<pre class="leading-relaxed">${highlighted}</pre>`;
+
+            } catch (err) {
+                resultBox.innerHTML = `<span class="text-rose-400">Error: Could not connect to API server.</span>`;
+            } finally {
+                btn.disabled = false;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                spinner.classList.add('hidden');
+            }
+        });
+
+        // Trigger initial submission
+        setTimeout(() => {
+            document.getElementById('apiForm').dispatchEvent(new Event('submit'));
+        }, 1000);
+    </script>
+</body>
+</html>
