@@ -391,6 +391,20 @@ app.post('/api/validate', validateHandler);
 // Public demo endpoint (landing page — strict rate limit, no auth)
 app.post('/demo/validate', validateHandler);
 
+// Health Check Endpoints (Public)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'up',
+    timestamp: new Date().toISOString(),
+    service: 'EmailGuard API',
+    uptime: process.uptime()
+  });
+});
+
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
 // Root route is automatically handled by express.static serving public/index.html
 
 const PORT = process.env.PORT || 3000;
